@@ -63,7 +63,7 @@ const userController = {
             .catch(err => res.status(400).json(err));
     },
     addFriend({ params }, res) {
-        User.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(params.id) }, { $push: { friends: mongoose.Types.ObjectId(params.friendId) } }, { new: true, runValidators: true })
+        User.findByIdAndUpdate({ _id: params.id }, { $push: { friends: params.friendId } }, { new: true, runValidators: true })
             .populate({
                 path: 'friends',
                 select: '_id'
